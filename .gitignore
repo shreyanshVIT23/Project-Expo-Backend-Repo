@@ -1,0 +1,38 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore database files
+*.db
+
+# Ignore environment files
+.env
+
+# Ignore system files
+Thumbs.db
+.DS_Store
+
+# Ignore output directories
+Old Utils/
+
+# Ignore virtual environment
+venv/
+
+# Ignore personal utilities directory
+server/Personal Utils/
+
+# Ignore specific files
+how to run individual files in Utils.txt
+test_process_path.ps1
+
+
+# Ignore Python cache files and directories
+server/__pycache__/
+server/Old Utils/__pycache__/
+
+# Ignore environment files and virtual environment
+.env
+.venv/
+
+# Ignore output files or directories
+server/extracted_data.txt
