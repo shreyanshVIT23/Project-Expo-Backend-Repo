@@ -89,7 +89,7 @@ def handle_different_msb (db_path ,start ,end ,msb_start ,msb_end ):
     +db_access .get_coordinates (db_path ,"Stairs %",msb_start )
     )
     if not lifts_stairs_start :
-        raise AmbiguousValueError (f"No lifts or stairs found on floor {msb_start}.")
+        raise AmbiguousValueError (f"No lifts or stairs found on floor {msb_start }.")
 
 
     shortest_path_to_lift =None 
@@ -100,7 +100,7 @@ def handle_different_msb (db_path ,start ,end ,msb_start ,msb_end ):
         lift_node =get_exact_node (graph ,lift )
         start_coords =db_access .get_coordinates (db_path ,start ,msb_start )
         if not start_coords :
-            raise AmbiguousValueError (f"Start location '{start}' not found on floor {msb_start}.")
+            raise AmbiguousValueError (f"Start location '{start }' not found on floor {msb_start }.")
         start_node =get_exact_node (graph ,start_coords [0 ])
 
         path ,weight =graph_converter .find_shortest_path (graph ,start_node ,lift_node )
@@ -115,13 +115,13 @@ def handle_different_msb (db_path ,start ,end ,msb_start ,msb_end ):
 
     lift_floor_coords =db_access .get_coordinates (db_path ,lift_description [0 ],msb_end )
     if not lift_floor_coords :
-        raise AmbiguousValueError (f"Matching lift/stair '{lift_description}' not found on floor {msb_end}.")
+        raise AmbiguousValueError (f"Matching lift/stair '{lift_description }' not found on floor {msb_end }.")
 
 
     lift_node_end =get_exact_node (graph ,lift_floor_coords [0 ])
     end_coords =db_access .get_coordinates (db_path ,end ,msb_end )
     if not end_coords :
-        raise AmbiguousValueError (f"End location '{end}' not found on floor {msb_end}.")
+        raise AmbiguousValueError (f"End location '{end }' not found on floor {msb_end }.")
     end_node =get_exact_node (graph ,end_coords [0 ])
 
     shortest_path_from_lift ,weight_from_lift =graph_converter .find_shortest_path (
@@ -145,7 +145,7 @@ def main (start_description ,end_description ,db_path =loader .env_variables ["d
 
         msb_start ,msb_end =validate_and_process_start_end (start_description ,end_description )
     except AmbiguousValueError as e :
-        print (f"Validation Error: {e}")
+        print (f"Validation Error: {e }")
         return None 
 
 
@@ -159,9 +159,9 @@ def main (start_description ,end_description ,db_path =loader .env_variables ["d
             end_coordinates =db_access .get_coordinates (db_path ,end_description ,msb_end )
 
             if not start_coordinates :
-                raise AmbiguousValueError (f"Start location '{start_description}' not found on floor {msb_start}.")
+                raise AmbiguousValueError (f"Start location '{start_description }' not found on floor {msb_start }.")
             if not end_coordinates :
-                raise AmbiguousValueError (f"End location '{end_description}' not found on floor {msb_end}.")
+                raise AmbiguousValueError (f"End location '{end_description }' not found on floor {msb_end }.")
 
 
             start_node =get_exact_node (graph ,start_coordinates [0 ])
@@ -174,14 +174,14 @@ def main (start_description ,end_description ,db_path =loader .env_variables ["d
             shortest_path ,weight =graph_converter .find_shortest_path (graph ,start_node ,end_node )
             return interpret_path (graph ,shortest_path ),weight ,"simple"
         except AmbiguousValueError as e :
-            print (f"Pathfinding Error: {e}")
+            print (f"Pathfinding Error: {e }")
             return None 
     else :
 
         try :
             return handle_different_msb (db_path ,start_description ,end_description ,msb_start ,msb_end )
         except AmbiguousValueError as e :
-            print (f"Cross-Floor Pathfinding Error: {e}")
+            print (f"Cross-Floor Pathfinding Error: {e }")
             return None 
 
 def example ():
@@ -190,8 +190,8 @@ def example ():
     result =main (start_description ,end_description ,loader .env_variables ["db_path"])
     if result :
         path ,weight =result 
-        print (f"Combined Path: {path}")
-        print (f"Total Path Weight: {weight}")
+        print (f"Combined Path: {path }")
+        print (f"Total Path Weight: {weight }")
     return result 
 
 if __name__ =="__main__":

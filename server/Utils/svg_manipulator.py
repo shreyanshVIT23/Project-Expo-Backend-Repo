@@ -7,7 +7,6 @@ def modify_svg (svg_file ,output_file ,path_points ):
 
     break_polyline_to_lines (svg_file ,output_file )
 
-
     tree =ET .parse (output_file )
     root =tree .getroot ()
     NS ={"svg":"http://www.w3.org/2000/svg"}
@@ -79,7 +78,7 @@ def create_arrow_with_angle (svg_root ,start_point ,end_point ,arrow_id ="dynami
         defs =ET .SubElement (svg_root ,'defs')
 
 
-    marker =defs .find (f".//svg:marker[@id='{arrow_id}']",namespaces =namespace )
+    marker =defs .find (f".//svg:marker[@id='{arrow_id }']",namespaces =namespace )
     if marker is None :
         marker =ET .SubElement (defs ,'marker',{
         'id':arrow_id ,
@@ -106,7 +105,7 @@ def create_arrow_with_angle (svg_root ,start_point ,end_point ,arrow_id ="dynami
     'y2':str (y2 ),
     'stroke':'red',
     'stroke-width':'0.8',
-    'marker-end':f'url(#{arrow_id})'
+    'marker-end':f'url(#{arrow_id })'
     })
 
 
@@ -146,10 +145,10 @@ def modify_line (line ,path_points ):
 
 
 def output (val :int ):
-    return os .path .join (loader .env_variables ["output_map"],f"floor {val} shortest path.svg")
+    return os .path .join (loader .env_variables ["output_map"],f"floor {val } shortest path.svg")
 
 def floor_svg (val :int ):
-    return os .path .join (loader .env_variables ["floor_map"],f"floor {val} copy path.svg")
+    return os .path .join (loader .env_variables ["floor_map"],f"floor {val } copy path.svg")
 
 
 def main (start :str ,end :str ):

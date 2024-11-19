@@ -11,7 +11,7 @@ def process_polylines (root :ET .Element ,namespace :dict )->Tuple [Set [Tuple [
     for polyline in root .findall ('.//svg:polyline',namespace ):
         points_str =polyline .get ('points')
         if points_str :
-            print (f"\nProcessing polyline: {polyline.get('id', 'unnamed')}")
+            print (f"\nProcessing polyline: {polyline .get ('id','unnamed')}")
 
 
             coords =points_str .strip ().split ()
@@ -24,7 +24,7 @@ def process_polylines (root :ET .Element ,namespace :dict )->Tuple [Set [Tuple [
                     y =float (coords [i +1 ])
                     points .append ((x ,y ))
                 except (IndexError ,ValueError )as e :
-                    print (f"Error parsing coordinates {coords[i:i+2]}: {e}")
+                    print (f"Error parsing coordinates {coords [i :i +2 ]}: {e }")
                     continue 
 
 
@@ -56,12 +56,12 @@ def process_lines (root :ET .Element )->Tuple [Set [Tuple [float ,float ]],Set [
                 anchor_points .add (point2 )
                 connections .add ((point1 ,point2 ))
 
-                print (f"\nProcessing line: {elem.get('id', 'unnamed')}")
-                print (f"Points: ({x1}, {y1}) -> ({x2}, {y2})")
+                print (f"\nProcessing line: {elem .get ('id','unnamed')}")
+                print (f"Points: ({x1 }, {y1 }) -> ({x2 }, {y2 })")
 
             except Exception as e :
                 print (f"Warning: Error parsing line coordinates")
-                print (f"Error: {e}")
+                print (f"Error: {e }")
                 continue 
 
     return anchor_points ,connections 
@@ -104,24 +104,24 @@ def process_svg_file (filepath :str )->Tuple [list [Tuple [float ,float ]],List 
 
         print ("\nAnchor Points:")
         for i ,point in enumerate (anchor_points_list ,1 ):
-            print (f"{i}. ({point[0]:.2f}, {point[1]:.2f})")
+            print (f"{i }. ({point [0 ]:.2f}, {point [1 ]:.2f})")
         print ("\nConnections:")
         for i ,conn in enumerate (connections_list ,start =1 ):
             start_point ,end_point =conn [0 ]
             distance =conn [1 ]
             start_idx =anchor_points_list .index (start_point )+1 
             end_idx =anchor_points_list .index (end_point )+1 
-            print (f"{i}. Point {start_idx} to Point {end_idx} (Distance: {distance:.2f})")
-            print (f"   ({start_point[0]:.2f}, {start_point[1]:.2f}) -> ({end_point[0]:.2f}, {end_point[1]:.2f})")
+            print (f"{i }. Point {start_idx } to Point {end_idx } (Distance: {distance :.2f})")
+            print (f"   ({start_point [0 ]:.2f}, {start_point [1 ]:.2f}) -> ({end_point [0 ]:.2f}, {end_point [1 ]:.2f})")
 
-        print (f"\nTotal anchor points: {len(anchor_points_list)}")
-        print (f"Total connections: {len(connections_list)}")
+        print (f"\nTotal anchor points: {len (anchor_points_list )}")
+        print (f"Total connections: {len (connections_list )}")
 
 
         with open ('extracted_data.txt','w')as f :
             f .write ("Anchor Points:\n")
             for i ,point in enumerate (anchor_points_list ,1 ):
-                f .write (f"{i}. ({point[0]:.2f}, {point[1]:.2f})\n")
+                f .write (f"{i }. ({point [0 ]:.2f}, {point [1 ]:.2f})\n")
 
             f .write ("\nConnections:\n")
             for i ,conn in enumerate (connections_list ,start =1 ):
@@ -129,8 +129,8 @@ def process_svg_file (filepath :str )->Tuple [list [Tuple [float ,float ]],List 
                 distance =conn [1 ]
                 start_idx =anchor_points_list .index (start_point )+1 
                 end_idx =anchor_points_list .index (end_point )+1 
-                f .write (f"{i}. Point {start_idx} to Point {end_idx} (Distance: {distance:.2f})\n")
-                f .write (f"   ({start_point[0]:.2f}, {start_point[1]:.2f}) -> ({end_point[0]:.2f}, {end_point[1]:.2f})\n")
+                f .write (f"{i }. Point {start_idx } to Point {end_idx } (Distance: {distance :.2f})\n")
+                f .write (f"   ({start_point [0 ]:.2f}, {start_point [1 ]:.2f}) -> ({end_point [0 ]:.2f}, {end_point [1 ]:.2f})\n")
 
 
         return anchor_points_list ,connections_list 
@@ -139,10 +139,10 @@ def process_svg_file (filepath :str )->Tuple [list [Tuple [float ,float ]],List 
         print ("SVG file not found. Please check the file path.")
         return [],[]
     except ET .ParseError as e :
-        print (f"Error parsing SVG file: {e}")
+        print (f"Error parsing SVG file: {e }")
         return [],[]
     except Exception as e :
-        print (f"An unexpected error occurred: {e}")
+        print (f"An unexpected error occurred: {e }")
         traceback .print_exc ()
         return [],[]
 

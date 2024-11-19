@@ -15,9 +15,9 @@ def get_coordinates (db_path ,description_condition ,floor_condition ):
             cursor .execute (query ,(description_condition ,floor_condition ))
             return cursor .fetchall ()
     except sqlite3 .Error as e :
-        print (f"Database error: {e}")
+        print (f"Database error: {e }")
     except Exception as e :
-        print (f"Error: {e}")
+        print (f"Error: {e }")
     return None 
 
 
@@ -35,9 +35,9 @@ def get_description (db_path ,coordinates ,floor_condition ):
             cursor .execute (query ,(*coordinates ,floor_condition ))
             return [row [0 ]for row in cursor .fetchall ()]
     except sqlite3 .Error as e :
-        print (f"Database error: {e}")
+        print (f"Database error: {e }")
     except Exception as e :
-        print (f"Error: {e}")
+        print (f"Error: {e }")
     return None 
 
 
@@ -48,7 +48,7 @@ def get_teacher_data (db_path :str ,name :str =None ,cabin_no :str =None ,room_n
 
     if name :
         query +=" AND name LIKE ?"
-        params .append (f"%{name}%")
+        params .append (f"%{name }%")
     if cabin_no :
         query +=" AND cabin_no = ?"
         params .append (cabin_no )
@@ -73,7 +73,7 @@ def get_teacher_data (db_path :str ,name :str =None ,cabin_no :str =None ,room_n
         for row in result 
         ]
     except sqlite3 .Error as e :
-        raise Exception (f"Database error: {e}")
+        raise Exception (f"Database error: {e }")
 
 def add_teacher_to_db (db_path :str ,data :Dict [str ,Any ]):
 
@@ -86,4 +86,4 @@ def add_teacher_to_db (db_path :str ,data :Dict [str ,Any ]):
             """,(data ["name"],data ["cabin_no"],data ["room_no"],data ["phone_number"],data ["email"]))
             conn .commit ()
     except sqlite3 .Error as e :
-        raise Exception (f"Database error: {e}")
+        raise Exception (f"Database error: {e }")
