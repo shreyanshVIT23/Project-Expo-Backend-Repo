@@ -1,12 +1,12 @@
 from flask import Flask ,request ,jsonify ,send_file 
-from .Utils .db_shortest_path_maker import validate_and_process_start_end as get_start_end 
-from .Utils .svg_manipulator import main as make_svg ,output as output_svg_location 
+from Utils .db_shortest_path_maker import validate_and_process_start_end as get_start_end 
+from Utils .svg_manipulator import main as make_svg ,output as output_svg_location 
 import os 
 from flask_cors import CORS 
-from .Utils .loader import env_variables 
-from .Utils .db_access import get_teacher_data ,add_teacher_to_db 
-from .Utils .db_maker import (
-create_user_db ,
+from werkzeug .security import check_password_hash ,generate_password_hash 
+from Utils .loader import env_variables 
+from Utils .db_access import get_teacher_data ,add_teacher_to_db ,get_password_users as get_user_credentials 
+from Utils .db_maker import (
 add_user ,
 add_login_timestamp ,
 get_all_users ,
@@ -26,9 +26,9 @@ def load_svg ():
         return jsonify ({"error":"Floor parameter is required"}),400 
 
     svg_path =os .path .join (
-    env_variables ["floor_map"],f"Floor {floor } copy path.svg")
+    env_variables ["floor_map"],f"Floor {floor} copy path.svg")
     if not os .path .exists (svg_path ):
-        return jsonify ({"error":f"SVG file for floor {floor } not found"}),404 
+        return jsonify ({"error":f"SVG file for floor {floor} not found"}),404 
 
     return send_file (svg_path ,mimetype ="image/svg+xml")
 
@@ -43,7 +43,7 @@ def load_shortest_path_svg ():
 
     svg_path =output_svg_location (floor )
     if not os .path .exists (svg_path ):
-        return jsonify ({"error":f"SVG file for floor {floor } not found"}),404 
+        return jsonify ({"error":f"SVG file for floor {floor} not found"}),404 
 
 
     return send_file (svg_path ,mimetype ="image/svg+xml")
@@ -71,19 +71,19 @@ def process_path ():
 
 
         input_svg_start =os .path .join (
-        env_variables ["floor_map"],f"floor {start_floor_no } copy path.svg"
+        env_variables ["floor_map"],f"floor {start_floor_no} copy path.svg"
         )
         input_svg_end =os .path .join (
-        env_variables ["floor_map"],f"floor {end_floor_no } copy path.svg"
+        env_variables ["floor_map"],f"floor {end_floor_no} copy path.svg"
         )
         print (
-        f"Input SVG Paths: Start: {input_svg_start }, End: {input_svg_end }")
+        f"Input SVG Paths: Start: {input_svg_start}, End: {input_svg_end}")
 
 
         if not os .path .exists (input_svg_start ):
-            return jsonify ({"error":f"SVG file for floor {start_floor_no } not found"}),404 
+            return jsonify ({"error":f"SVG file for floor {start_floor_no} not found"}),404 
         if not os .path .exists (input_svg_end ):
-            return jsonify ({"error":f"SVG file for floor {end_floor_no } not found"}),404 
+            return jsonify ({"error":f"SVG file for floor {end_floor_no} not found"}),404 
 
 
         print ("Processing and modifying SVGs for the path visualization")
@@ -100,8 +100,8 @@ def process_path ():
         print ("Path spans multiple floors, returning URLs for start and end floor SVGs")
         return jsonify ({
         "files":{
-        "start_floor":f"/load_shortest_path_svg?floor={start_floor_no }",
-        "end_floor":f"/load_shortest_path_svg?floor={end_floor_no }"
+        "start_floor":f"/load_shortest_path_svg?floor={start_floor_no}",
+        "end_floor":f"/load_shortest_path_svg?floor={end_floor_no}"
         }
         })
     except Exception as e :
@@ -150,31 +150,17 @@ def manage_teachers ():
 
 @app .route ('/register',methods =['POST'])
 def register_user ():
+
     data =request .json 
     username =data .get ('username')
-    password =data .get ('password')
+    password =generate_password_hash (data .get ('password'))
 
     if not username or not password :
         return jsonify ({"error":"Username and password are required"}),400 
 
+
     result =add_user (username ,password ,env_variables ["user_db_path"])
     return jsonify (result ),201 if "message"in result else 400 
-
-
-
-
-@app .route ('/login',methods =['POST'])
-def login_user ():
-    data =request .json 
-    username =data .get ('username')
-
-    if not username :
-        return jsonify ({"error":"Username is required"}),400 
-
-    result =add_login_timestamp (username ,env_variables ["user_db_path"])
-    return jsonify (result ),200 if "message"in result else 404 
-
-
 
 
 @app .route ('/users',methods =['GET'])
@@ -200,6 +186,29 @@ def delete_user_route (username ):
     result =delete_user (username ,env_variables ["user_db_path"])
     return jsonify (result ),200 if "message"in result else 404 
 
+@app .route ('/login',methods =['POST'])
+def login_user ():
+
+    data =request .json 
+
+    username =data .get ('username')
+    password =data .get ('password')
+
+    if not username or not password :
+        return jsonify ({"error":"Username and password are required"}),400 
+
+
+    stored_hashed_password =get_user_credentials (env_variables ["user_db_path"],username )
+    if not stored_hashed_password or not check_password_hash (stored_hashed_password ,password ):
+        return jsonify ({"error":"Invalid username or password"}),401 
+
+
+    result =add_login_timestamp (username ,env_variables ["user_db_path"])
+
+    if "message"in result :
+        return jsonify ({"message":"Login successful","last_login":result ["last_login"]}),200 
+    else :
+        return jsonify (result ),404 
 
 if __name__ =="__main__":
     app .run (debug =True )
