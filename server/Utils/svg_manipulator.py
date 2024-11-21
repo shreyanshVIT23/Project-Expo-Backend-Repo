@@ -106,7 +106,7 @@ def create_arrow_with_angle (svg_root ,start_point ,end_point ,arrow_id ="dynami
         defs =ET .SubElement (svg_root ,'defs')
 
 
-    marker =defs .find (f".//svg:marker[@id='{arrow_id }']",namespaces =namespace )
+    marker =defs .find (f".//svg:marker[@id='{arrow_id}']",namespaces =namespace )
     if marker is None :
         marker =ET .SubElement (defs ,'marker',{
         'id':arrow_id ,
@@ -133,7 +133,7 @@ def create_arrow_with_angle (svg_root ,start_point ,end_point ,arrow_id ="dynami
     'y2':str (y2 ),
     'stroke':'red',
     'stroke-width':'0.8',
-    'marker-end':f'url(#{arrow_id })'
+    'marker-end':f'url(#{arrow_id})'
     })
 
 
@@ -173,10 +173,10 @@ def modify_line (line ,path_points ):
 
 
 def output (val :int ):
-    return os .path .join (loader .env_variables ["output_map"],f"floor {val } shortest path.svg")
+    return os .path .join (loader .env_variables ["output_map"],f"floor {val} shortest path.svg")
 
 def floor_svg (val :int ):
-    return os .path .join (loader .env_variables ["floor_map"],f"floor {val } copy path.svg")
+    return os .path .join (loader .env_variables ["floor_map"],f"floor {val} copy path.svg")
 
 
 def main (start :str ,end :str ):
@@ -192,4 +192,4 @@ def main (start :str ,end :str ):
 
 
 if __name__ =="__main__":
-    main ("019","206")
+    main ("303","206")

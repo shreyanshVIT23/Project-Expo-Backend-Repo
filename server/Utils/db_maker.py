@@ -76,7 +76,7 @@ def insert_coordinates (coordinates ,cursor ,floor ):
             VALUES (?, ?, ?)
         """,(x ,y ,floor ))
 
-    print (f"{len (coordinates )} coordinates inserted successfully into the anchor_point_coordinates table.")
+    print (f"{len(coordinates)} coordinates inserted successfully into the anchor_point_coordinates table.")
 
 def insert_descriptions_from_connections (
 connections :List [Tuple [Tuple [Tuple [float ,float ],Tuple [float ,float ]],float ]],cursor ,floor :int 
@@ -136,10 +136,10 @@ connections :List [Tuple [Tuple [Tuple [float ,float ],Tuple [float ,float ]],fl
             INSERT INTO anchor_point_description (anchor_point_id, name, description, extra_info)
             VALUES (?, ?, ?, ?)
             """,
-        (anchor_id ,f"Anchor at ({x }, {y })","Unique anchor point","Auto-generated description"),
+        (anchor_id ,f"Anchor at ({x}, {y})","Unique anchor point","Auto-generated description"),
         )
 
-    print (f"{len (unique_point_ids )} unique anchor points inserted into anchor_point_description.")
+    print (f"{len(unique_point_ids)} unique anchor points inserted into anchor_point_description.")
 
 def insert_connections (connections ,cursor ):
 
@@ -164,9 +164,9 @@ def insert_connections (connections ,cursor ):
                 VALUES (?, ?, ?)
             """,(point_a_id ,point_b_id ,distance ))
         else :
-            print (f"Skipping connection: ({start_point }, {end_point }) - IDs not found")
+            print (f"Skipping connection: ({start_point}, {end_point}) - IDs not found")
 
-    print (f"{len (connections )} connections inserted successfully into the connections table.")
+    print (f"{len(connections)} connections inserted successfully into the connections table.")
 
 def process_svg_data (svg_file ,coordinates ,connections ,db_path ):
 
@@ -225,10 +225,10 @@ def add_user (username ,password ,db_path ):
 
             cursor .execute ("INSERT INTO users (username, password) VALUES (?, ?)",(username ,password ))
             conn .commit ()
-            return {"message":f"User '{username }' added successfully."}
+            return {"message":f"User '{username}' added successfully."}
     except sqlite3 .IntegrityError :
 
-        return {"error":f"Username '{username }' already exists."}
+        return {"error":f"Username '{username}' already exists."}
     except Exception as e :
 
         return {"error":str (e )}
@@ -251,9 +251,9 @@ def add_login_timestamp (username ,db_path ):
                 (user_id ,timestamp )
                 )
                 conn .commit ()
-                return {"message":f"Login timestamp for user '{username }' added at {timestamp }."}
+                return {"message":f"Login timestamp for user '{username}' added at {timestamp}."}
             else :
-                return {"error":f"User '{username }' not found."}
+                return {"error":f"User '{username}' not found."}
     except Exception as e :
 
         return {"error":str (e )}
@@ -279,7 +279,7 @@ def get_login_timestamps (username ,db_path ):
             cursor .execute ("SELECT * FROM login_timestamps WHERE user_id = ?",(user_id ,))
             return cursor .fetchall ()
         else :
-            print (f"Error: User '{username }' not found.")
+            print (f"Error: User '{username}' not found.")
             return []
 
 
@@ -289,8 +289,8 @@ def delete_user (username ,db_path ):
         cursor =conn .cursor ()
         cursor .execute ("DELETE FROM users WHERE username = ?",(username ,))
         if cursor .rowcount >0 :
-            return {"message":f"User '{username }' and their login timestamps have been deleted."}
-        return {"error":f"User '{username }' not found."}
+            return {"message":f"User '{username}' and their login timestamps have been deleted."}
+        return {"error":f"User '{username}' not found."}
 
 def find_closest_text_and_update_db (svg_data ,cursor ,floor ):
 
@@ -327,19 +327,7 @@ def find_closest_text_and_update_db (svg_data ,cursor ,floor ):
                 """,(closest_text ,point_id ))
 
 
-def normal():
-    floor = loader.env_variables["floor_map"]
-    processed_files = set()
-    for filename in os.listdir(floor):  
-        filepath = os.path.join(floor, filename)
-        if filename not in processed_files:
-            processed_files.add(filename)
-            if os.path.isfile(filepath):  # Check if it's a file
-                coordinates, connections = extractor.process_svg_file(filepath)
-                process_svg_data(filepath,coordinates,connections,loader.env_variables["db_path"])
 
-if __name__ == "__main__":
-    normal()
 
 
 
