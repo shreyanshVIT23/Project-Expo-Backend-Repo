@@ -116,23 +116,6 @@ def process_svg_file (filepath :str )->Tuple [list [Tuple [float ,float ]],List 
 
         print (f"\nTotal anchor points: {len (anchor_points_list )}")
         print (f"Total connections: {len (connections_list )}")
-
-
-        with open ('extracted_data.txt','w')as f :
-            f .write ("Anchor Points:\n")
-            for i ,point in enumerate (anchor_points_list ,1 ):
-                f .write (f"{i }. ({point [0 ]:.2f}, {point [1 ]:.2f})\n")
-
-            f .write ("\nConnections:\n")
-            for i ,conn in enumerate (connections_list ,start =1 ):
-                start_point ,end_point =conn [0 ]
-                distance =conn [1 ]
-                start_idx =anchor_points_list .index (start_point )+1 
-                end_idx =anchor_points_list .index (end_point )+1 
-                f .write (f"{i }. Point {start_idx } to Point {end_idx } (Distance: {distance :.2f})\n")
-                f .write (f"   ({start_point [0 ]:.2f}, {start_point [1 ]:.2f}) -> ({end_point [0 ]:.2f}, {end_point [1 ]:.2f})\n")
-
-
         return anchor_points_list ,connections_list 
 
     except FileNotFoundError :

@@ -51,10 +51,6 @@ def create_graph_from_db (db_path ):
 
     return G 
 
-
-import networkx as nx 
-from typing import List ,Tuple 
-
 def find_shortest_path (graph :nx .Graph ,start :Tuple [float ,float ],end :Tuple [float ,float ])->Tuple [List [Tuple [float ,float ]],float ]:
 
     try :

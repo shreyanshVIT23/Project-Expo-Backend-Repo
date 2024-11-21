@@ -327,13 +327,19 @@ def find_closest_text_and_update_db (svg_data ,cursor ,floor ):
                 """,(closest_text ,point_id ))
 
 
-if __name__ == "__main__":
+def normal():
     floor = loader.env_variables["floor_map"]
-    for filename in os.listdir(floor):
+    processed_files = set()
+    for filename in os.listdir(floor):  
         filepath = os.path.join(floor, filename)
-        if os.path.isfile(filepath):  # Check if it's a file
-            coordinates, connections = extractor.process_svg_file(filepath)
-            process_svg_data(filepath,coordinates,connections,loader.env_variables["db_path"])
+        if filename not in processed_files:
+            processed_files.add(filename)
+            if os.path.isfile(filepath):  # Check if it's a file
+                coordinates, connections = extractor.process_svg_file(filepath)
+                process_svg_data(filepath,coordinates,connections,loader.env_variables["db_path"])
+
+if __name__ == "__main__":
+    normal()
 
 
 
