@@ -87,3 +87,4 @@ def add_teacher_to_db (db_path :str ,data :Dict [str ,Any ]):
             conn .commit ()
     except sqlite3 .Error as e :
         raise Exception (f"Database error: {e }")
+

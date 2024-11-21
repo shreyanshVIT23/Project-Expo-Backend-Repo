@@ -7,6 +7,7 @@ def modify_svg (svg_file ,output_file ,path_points ):
 
     break_polyline_to_lines (svg_file ,output_file )
 
+
     tree =ET .parse (output_file )
     root =tree .getroot ()
     NS ={"svg":"http://www.w3.org/2000/svg"}
@@ -20,9 +21,36 @@ def modify_svg (svg_file ,output_file ,path_points ):
             del line .attrib ['class']
         modify_line (line ,path_points )
 
+    g_element =root .find (".//svg:g[@id='Path']",namespaces =NS )
+
+
+    if g_element is not None and 'class'in g_element .attrib :
+        del g_element .attrib ['class']
+
 
     with open (output_file ,"wb")as f :
         tree .write (f ,pretty_print =True ,xml_declaration =True ,encoding ="utf-8")
+
+def parse_svg_text (svg_file ):
+
+    tree =ET .parse (svg_file )
+    root =tree .getroot ()
+    nsmap ={'svg':'http://www.w3.org/2000/svg'}
+
+    text_data =[]
+    for text_element in root .findall (".//svg:text",namespaces =nsmap ):
+        transform =text_element .get ("transform","")
+        if "translate"in transform :
+
+            coords =transform .split ("translate(")[1 ].split (")")[0 ].split ()
+            x1 ,y1 =float (coords [0 ]),float (coords [1 ])
+
+
+            tspan =text_element .find ("svg:tspan",namespaces =nsmap )
+            if tspan is not None :
+                text_content =tspan .text 
+                text_data .append ((text_content ,x1 ,y1 ))
+    return text_data 
 
 
 def break_polyline_to_lines (svg_file ,output_file ):
@@ -164,4 +192,4 @@ def main (start :str ,end :str ):
 
 
 if __name__ =="__main__":
-    main ("215","407")
+    main ("019","206")
