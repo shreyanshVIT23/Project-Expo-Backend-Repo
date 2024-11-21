@@ -1,10 +1,17 @@
 import sqlite3 
 import re 
+import os 
+from .import extractor 
 from typing import List ,Tuple 
 from .import loader 
+from .import svg_manipulator as svg_man 
 from datetime import datetime 
 
 def create_database (cursor ):
+
+
+
+
     cursor .execute ("""
         CREATE TABLE IF NOT EXISTS anchor_point_coordinates (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,7 +79,7 @@ def insert_coordinates (coordinates ,cursor ,floor ):
     print (f"{len (coordinates )} coordinates inserted successfully into the anchor_point_coordinates table.")
 
 def insert_descriptions_from_connections (
-connections :List [Tuple [Tuple [Tuple [float ,float ],Tuple [float ,float ]],float ]],cursor 
+connections :List [Tuple [Tuple [Tuple [float ,float ],Tuple [float ,float ]],float ]],cursor ,floor :int 
 ):
 
 
@@ -99,8 +106,11 @@ connections :List [Tuple [Tuple [Tuple [float ,float ],Tuple [float ,float ]],fl
     for x ,y in unique_coordinates :
 
         cursor .execute (
-        "SELECT id FROM anchor_point_coordinates WHERE x_coordinate = ? AND y_coordinate = ?",
-        (x ,y ),
+        """
+            SELECT id FROM anchor_point_coordinates 
+            WHERE x_coordinate = ? AND y_coordinate = ? AND floor = ?
+            """,
+        (x ,y ,floor ),
         )
         result =cursor .fetchone ()
 
@@ -109,8 +119,11 @@ connections :List [Tuple [Tuple [Tuple [float ,float ],Tuple [float ,float ]],fl
         else :
 
             cursor .execute (
-            "INSERT INTO anchor_point_coordinates (x_coordinate, y_coordinate) VALUES (?, ?)",
-            (x ,y ),
+            """
+                INSERT INTO anchor_point_coordinates (x_coordinate, y_coordinate, floor) 
+                VALUES (?, ?, ?)
+                """,
+            (x ,y ,floor ),
             )
             point_id =cursor .lastrowid 
 
@@ -127,7 +140,6 @@ connections :List [Tuple [Tuple [Tuple [float ,float ],Tuple [float ,float ]],fl
         )
 
     print (f"{len (unique_point_ids )} unique anchor points inserted into anchor_point_description.")
-
 
 def insert_connections (connections ,cursor ):
 
@@ -171,8 +183,10 @@ def process_svg_data (svg_file ,coordinates ,connections ,db_path ):
 
         insert_coordinates (coordinates ,cursor ,floor_number )
         insert_connections (connections ,cursor )
-        insert_descriptions_from_connections (connections ,cursor )
+        insert_descriptions_from_connections (connections ,cursor ,floor_number )
 
+        text =svg_man .parse_svg_text (svg_file )
+        find_closest_text_and_update_db (text ,cursor ,floor_number )
 
 
 
@@ -278,6 +292,54 @@ def delete_user (username ,db_path ):
             return {"message":f"User '{username }' and their login timestamps have been deleted."}
         return {"error":f"User '{username }' not found."}
 
+def find_closest_text_and_update_db (svg_data ,cursor ,floor ):
+
+
+
+    cursor .execute ("""
+        SELECT id, x_coordinate, y_coordinate 
+        FROM anchor_point_coordinates 
+        WHERE floor = ?
+        """,(floor ,))
+    anchor_points =cursor .fetchall ()
+
+    def calculate_distance (x1 ,y1 ,x2 ,y2 ):
+
+        return ((x2 -x1 )**2 +(y2 -y1 )**2 )**0.5 
+
+    for point_id ,x ,y in anchor_points :
+        closest_text =None 
+        closest_distance =float ("inf")
+
+
+        for text ,x1 ,y1 in svg_data :
+            distance =calculate_distance (x1 ,y1 ,x ,y )
+            if distance <closest_distance :
+                closest_distance =distance 
+                closest_text =text 
+
+
+        if closest_text is not None :
+            cursor .execute ("""
+                UPDATE anchor_point_description
+                SET description = ?
+                WHERE anchor_point_id = ? AND description = 'Unique anchor point'
+                """,(closest_text ,point_id ))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -320,13 +382,9 @@ def delete_user (username ,db_path ):
 
 
 if __name__ =="__main__":
-    with sqlite3 .connect (loader .env_variables ["db_path"])as cursor :
-        create_teachers_database (cursor )
-
-
-
-
-
-
-
-
+    floor =loader .env_variables ["floor_map"]
+    for filename in os .listdir (floor ):
+        filepath =os .path .join (floor ,filename )
+        if os .path .isfile (filepath ):
+            coordinates ,connections =extractor .process_svg_file (filepath )
+            process_svg_data (filepath ,coordinates ,connections ,loader .env_variables ["db_path"])
