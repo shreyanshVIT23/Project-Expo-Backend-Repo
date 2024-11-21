@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Configuration name displayed in the debugger dropdown
+            "name": "Debug: Utils.db_maker",
+            
+           
+            // Launch mode for the debugger
+            "request": "launch",
+            
+            // Specify the module to run with `-m` flag
+            "module": "Utils.db_maker",
+            
+        }
+    ]
+}
