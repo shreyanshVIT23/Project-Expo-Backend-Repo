@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 614.4 345.6">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+      }
+
+      .cls-2 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        display: none;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="svg1">
+      <sodipodi:namedview id="namedview1" bordercolor="#000000" borderopacity="0.25" inkscape:current-layer="g1" inkscape:cx="307.20001" inkscape:cy="172.6582" inkscape:deskcolor="#d1d1d1" inkscape:pagecheckerboard="0" inkscape:pageopacity="0.0" inkscape:showpageshadow="2" inkscape:window-height="991" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="-9" inkscape:window-y="-9" inkscape:zoom="2.203776" pagecolor="#ffffff"/>
+      <g id="g1" inkscape:groupmode="layer" inkscape:label="Image">
+        <image id="image1" class="cls-2" width="1920" height="1080" transform="scale(.3)" xlink:href="1st floor-1.png"/>
+      </g>
+    </g>
+    <g id="Path" class="cls-3">
+      <polyline class="cls-1" points="46.2 319.7 46.2 295.2 60.5 295.2 60.5 259.4 37.5 259.4"/>
+      <polyline class="cls-1" points="92.2 268.6 92.2 295.2 60.5 295.2"/>
+      <polyline class="cls-1" points="119.7 275.3 119.7 295.2 92.2 295.2"/>
+      <polyline class="cls-1" points="167.7 319.7 167.7 295.2 119.7 295.2"/>
+      <polyline class="cls-1" points="298.5 319.7 298.5 295.2 252 295.2"/>
+      <polyline class="cls-1" points="315.3 275.3 315.3 295.2 298.5 295.2"/>
+      <polyline class="cls-1" points="348.5 328.9 328.6 328.9 328.6 295.2 315.3 295.2"/>
+      <polyline class="cls-1" points="388.3 319.7 388.3 295.2 328.6 295.2"/>
+      <polyline class="cls-1" points="446.6 319.7 446.6 295.2 388.3 295.2"/>
+      <polyline class="cls-1" points="502.7 272.2 502.7 295.2 446.6 295.2 463.9 295.2 463.9 238.5"/>
+      <polyline class="cls-1" points="531.3 272.2 531.3 295.2 502.7 295.2"/>
+      <polyline class="cls-1" points="574.7 255.9 558.9 255.9 558.9 295.2 531.3 295.2"/>
+      <polyline class="cls-1" points="567.6 319.7 567.6 295.2 558.9 295.2"/>
+      <polyline class="cls-1" points="181 238.5 153.4 238.5 153.4 272.2 167.7 295.2 252 295.2 252 319.7"/>
+      <polyline class="cls-1" points="126.4 220.6 153.4 220.6 153.4 238.5"/>
+      <polyline class="cls-1" points="126.4 198.2 153.4 198.2 153.4 220.6"/>
+      <polyline class="cls-1" points="182.6 164.5 153.4 164.5 153.4 198.2"/>
+      <polyline class="cls-1" points="126.4 121.6 153.4 121.6 153.4 164.5"/>
+      <polyline class="cls-1" points="182.6 80.2 153.4 80.2 153.4 121.6"/>
+      <polyline class="cls-1" points="42.6 12.8 42.6 43.4 153.4 43.4 153.4 80.2"/>
+      <polyline class="cls-1" points="79.9 71 79.9 43.4 42.6 43.4 53.9 53.1 53.9 98.6 35 98.6"/>
+      <line class="cls-1" x1="130.5" y1="43.4" x2="79.9" y2="43.4"/>
+      <polyline class="cls-1" points="232.6 15.4 232.6 43.4 153.4 43.4 130.5 43.4 130.5 12.8"/>
+      <polyline class="cls-1" points="279.1 12.8 279.1 43.4 232.6 43.4"/>
+      <polyline class="cls-1" points="386.3 12.8 386.3 43.4 331.9 43.4"/>
+      <polyline class="cls-1" points="456.8 12.8 456.8 43.4 386.3 43.4"/>
+      <polyline class="cls-1" points="498.6 43.4 519.6 43.4 519.6 64.4"/>
+      <polyline class="cls-1" points="545.6 12.8 545.6 43.4 519.6 43.4"/>
+      <polyline class="cls-1" points="578.3 75.6 558.9 75.6 558.9 57.2 545.6 43.4"/>
+      <polyline class="cls-1" points="344.4 94.5 305.5 94.5 305.5 43.4 279.1 43.4 331.9 43.4 331.9 12.8"/>
+      <line class="cls-1" x1="295.9" y1="123.6" x2="305.5" y2="94.5"/>
+      <polyline class="cls-1" points="498.6 64.4 498.6 43.4 456.8 43.4 463.9 43.4 463.9 100.9 437.4 100.9"/>
+      <polyline class="cls-1" points="463.9 100.9 463.9 131.8 493 131.8"/>
+      <polyline class="cls-1" points="437.4 160.4 463.9 160.4 463.9 131.8"/>
+      <polyline class="cls-1" points="493 194.1 463.9 194.1 463.9 160.4"/>
+      <polyline class="cls-1" points="493 217.6 463.9 217.6 463.9 194.1"/>
+      <polyline class="cls-1" points="439.4 238.5 463.9 238.5 463.9 217.6"/>
+      <polyline class="cls-1" points="130.5 43.4 112.6 43.4 112.6 64.4"/>
+    </g>
+  </g>
+</svg>
