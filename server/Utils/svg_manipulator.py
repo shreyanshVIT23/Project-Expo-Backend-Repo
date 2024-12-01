@@ -2,7 +2,7 @@ from .import db_shortest_path_maker
 from lxml import etree as ET
 from .import loader
 import os
-
+import argparse
 
 def modify_svg(svg_file, output_file, path_points):
 
@@ -232,6 +232,10 @@ def main(start: str, end: str, preference: str = None):
         "error": shortest_path["error"],
     }
 
-
 if __name__ == "__main__":
-    print(main("T404", "Library", "Lift"))
+    parser = argparse.ArgumentParser(description="SVG Manipulator script")
+    parser.add_argument('start', type=str, help="Starting point or value")
+    parser.add_argument('end', type=str, help="Ending point or value")
+    parser.add_argument('--preference', type=str, default="default", help="User preference (optional)")
+    args = parser.parse_args()
+    main(args.start, args.end, args.preference)
