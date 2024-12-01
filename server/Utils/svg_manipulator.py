@@ -3,6 +3,7 @@ from lxml import etree as ET
 from .import loader
 import os
 import argparse
+import json
 
 def modify_svg(svg_file, output_file, path_points):
 
@@ -238,5 +239,5 @@ if __name__ == "__main__":
     parser.add_argument('end', type=str, help="Ending point or value")
     parser.add_argument('--preference', type=str, default="Lift", help="User preference (optional)")
     args = parser.parse_args()
-    print(main(args.start, args.end, args.preference))
+    print(json.dumps(main(args.start, args.end, args.preference)))
 

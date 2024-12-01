@@ -1,35 +1,57 @@
+import webbrowser
 import subprocess
 import sys
-import os
-import webbrowser
+import json
 from pathlib import Path
+
+
+def sanitize_output(output):
+    """Extract the JSON-like portion from the output."""
+    for line in output.splitlines():
+        if line.startswith("{") and line.endswith("}"):
+            return line  # Return the JSON-like content
+    return None
+
+
 def run_svg_manipulator(param1, param2, param3, open_in_browser=False):
     try:
-        os.chdir("server")
-        print("Changed directory to 'server'.")
+        # Use the current Python executable from the active environment
+        python_executable = sys.executable
+
         process = subprocess.run(
-            ["python", "-m", "Utils.svg_manipulator", param1, param2, "--preference", param3],
+            [
+                python_executable, "-m", "Utils.svg_manipulator", param1, param2, "--preference", param3
+            ],
             capture_output=True,
             text=True,
             check=True
         )
-        output = process.stdout.strip().splitlines()[-1]
-        print("Output from svg_manipulator:")
-        print(process.stdout)
-        if open_in_browser:
-            output_path = Path(output)  
-            if output_path.exists():
-                print(f"Opening {output_path} in the default web browser...")
-                webbrowser.open(output_path.resolve().as_uri())
-            else:
-                print(f"Error: Output file {output_path} does not exist.")
-    except FileNotFoundError:
-        print("Error: 'server' directory not found. Please ensure the directory exists.")
+
+        raw_output = process.stdout.strip()
+        print("Raw output:")
+        print(raw_output)
+
+        # Sanitize and parse output
+        json_part = sanitize_output(raw_output)
+        if not json_part:
+            raise ValueError("No JSON-like content found in the output.")
+
+        result = json.loads(json_part.replace("'", '"'))  # Replace single quotes if necessary
+        print("Output from svg_manipulator (as dictionary):", result)
+
+        # Further handling (e.g., open SVGs)
+        if "svg_updates" in list(result.keys()) and open_in_browser:
+            for svg_file in result["svg_updates"]:
+                svg_path = Path(svg_file)
+                if svg_path.exists():
+                    print(f"Opening {svg_path} in the default web browser...")
+                    webbrowser.open(svg_path.resolve().as_uri())
+                else:
+                    print(f"Error: Output file {svg_path} does not exist.")
+    except (subprocess.CalledProcessError, ValueError) as e:
+        print(f"Error: {e}")
         sys.exit(1)
-    except subprocess.CalledProcessError as e:
-        print("An error occurred while executing the command:")
-        print(e.stderr if e.stderr else e)
-        sys.exit(1)
+
 if __name__ == "__main__":
     if len(sys.argv) < 4 or len(sys.argv) > 5:
         print("Usage: python run_svg_manipulator.py <param1> <param2> <param3> [--open]")

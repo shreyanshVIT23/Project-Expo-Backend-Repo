@@ -4,11 +4,18 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
             "name": "Python Debugger: Module",
             "type": "debugpy",
             "request": "launch",
-            "module": "server.Utils.svg_manipulator"
+            "module": "server.run_test",
+            "args": [
+                "T004",
+                "507",
+                "Lift",
+                "--open"
+            ],                       
         }
     ]
 }
