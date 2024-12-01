@@ -8,7 +8,7 @@ def run_svg_manipulator(param1, param2, param3, open_in_browser=False):
         os.chdir("server")
         print("Changed directory to 'server'.")
         process = subprocess.run(
-            ["python", "-m", "Utils.svg_manipultor", param1, param2, "--preference", param3],
+            ["python", "-m", "Utils.svg_manipulator", param1, param2, "--preference", param3],
             capture_output=True,
             text=True,
             check=True

@@ -233,9 +233,10 @@ def main(start: str, end: str, preference: str = None):
     }
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="SVG Manipulator script")
-    parser.add_argument('start', type=str, help="Starting point or value")
-    parser.add_argument('end', type=str, help="Ending point or value")
-    parser.add_argument('--preference', type=str, default="default", help="User preference (optional)")
-    args = parser.parse_args()
-    print(main(args.start, args.end, args.preference))
+    # parser = argparse.ArgumentParser(description="SVG Manipulator script")
+    # parser.add_argument('start', type=str, help="Starting point or value")
+    # parser.add_argument('end', type=str, help="Ending point or value")
+    # parser.add_argument('--preference', type=str, default="Lift", help="User preference (optional)")
+    # args = parser.parse_args()
+    # print(main(args.start, args.end, args.preference))
+    print(main("T004","507"))
