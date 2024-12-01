@@ -188,48 +188,46 @@
       </g>
     </g>
     <g id="Path">
-      <g>
-        <polyline class="cls-1" points="133.7 312.4 145.6 312.4 145.6 344.4 135.8 344.4 135.5 356.7"/>
-        <line class="cls-1" x1="235.3" y1="344.4" x2="235.3" y2="360.3"/>
-        <path class="cls-1" d="M145.6,344.4"/>
-        <polyline class="cls-1" points="183.2 278.3 235.3 278.3 235.3 294.7 235.3 344.4 214.1 344.4 214.1 323.3"/>
-        <polyline class="cls-1" points="224.2 258.6 235.3 258.6 235.3 278.3"/>
-        <polyline class="cls-1" points="224.1 233.4 235.3 232.6 235.3 258.6"/>
-        <polyline class="cls-1" points="225.9 220.1 235.3 218.6 235.3 232.6"/>
-        <polyline class="cls-1" points="235.3 218.6 235.3 195.3 260.3 195.3"/>
-        <polyline class="cls-1" points="238.7 121.7 238.7 179.5 235.3 195.3"/>
-        <line class="cls-1" x1="238.7" y1="145.6" x2="238.7" y2="179.5"/>
-        <polyline class="cls-1" points="264.1 145.6 284.7 145.6 284.1 121.7"/>
-        <polyline class="cls-1" points="307.5 121.5 307.5 145.6 284.7 145.6"/>
-        <polyline class="cls-1" points="307.5 234.8 325.5 234.6 325.5 145.6 307.5 145.6"/>
-        <polyline class="cls-1" points="314.7 303.5 325.5 303.5 325.5 234.6 345.5 234.8"/>
-        <polyline class="cls-1" points="284.7 360.3 284.6 344.4 263.5 344.4 235.3 344.4"/>
-        <polyline class="cls-1" points="308 360 308.8 344.4 284.6 344.4 325.5 344.4 325.5 303.5"/>
-        <polyline class="cls-1" points="352.3 360.3 351.4 344.4 325.5 344.4"/>
-        <polyline class="cls-1" points="377.5 360.3 376.9 344.4 351.4 344.4"/>
-        <polyline class="cls-1" points="403.7 360 403.7 344.4 376.9 344.4"/>
-        <polyline class="cls-1" points="325.5 145.6 351.4 145.6 351.7 121.7"/>
-        <polyline class="cls-1" points="376.9 121.7 376.9 145.6 351.4 145.6"/>
-        <polyline class="cls-1" points="415.1 121.5 415.1 146.3 376.9 145.6"/>
-        <polyline class="cls-1" points="392.8 195.3 415.1 195.3 415.1 146.3 439.5 145.6 439.5 165.7"/>
-        <polyline class="cls-1" points="428.6 220.1 415.1 221.1 415.1 195.3"/>
-        <polyline class="cls-1" points="429.5 231.6 415.1 233.4 415.1 221.1 415.1 258.6 430.4 258.6"/>
-        <polyline class="cls-1" points="394 294.7 415.1 294.7 415.1 258.6"/>
-        <polyline class="cls-1" points="403.7 344.4 415.1 344.4 415.1 294.7"/>
-        <polyline class="cls-1" points="415.1 344.4 441.3 344.4 441.3 322.7"/>
-        <polyline class="cls-1" points="468.2 326.3 468.2 344.4 441.3 344.4"/>
-        <polyline class="cls-1" points="468.2 344.4 499.9 344.4 499.9 360"/>
-        <polyline class="cls-1" points="499.9 344.4 499.9 312.6 510.3 312.6"/>
-        <polyline class="cls-1" points="464 168.2 464 145.6 439.5 145.6"/>
-        <polyline class="cls-1" points="498.4 121.5 498.4 145.6 464 145.6"/>
-        <polyline class="cls-1" points="145.6 344.4 175.2 344.4 175.7 321.5"/>
-        <line class="cls-1" x1="175.2" y1="344.4" x2="214.1" y2="344.4"/>
-        <path class="cls-1" d="M143.8,124"/>
-        <polyline class="cls-1" points="214.4 166.9 214.1 146.3 238.7 145.6 264.1 145.6 263.5 124"/>
-        <polyline class="cls-1" points="175.7 172.5 175.2 145.4 214.1 146.3"/>
-        <polyline class="cls-1" points="142.4 121.5 142.4 146.3 175.2 145.4"/>
-        <polyline class="cls-1" points="135.8 167.2 142.4 167.2 142.4 146.3"/>
-      </g>
+      <polyline class="cls-1" points="133.7 312.4 145.6 312.4 145.6 344.4 135.8 344.4 135.5 356.7"/>
+      <line class="cls-1" x1="235.3" y1="344.4" x2="235.3" y2="360.3"/>
+      <path class="cls-1" d="M145.6,344.4"/>
+      <polyline class="cls-1" points="183.2 278.3 235.3 278.3 235.3 294.7 235.3 344.4 214.1 344.4 214.1 323.3"/>
+      <polyline class="cls-1" points="224.2 258.6 235.3 258.6 235.3 278.3"/>
+      <polyline class="cls-1" points="224.1 233.4 235.3 232.6 235.3 258.6"/>
+      <polyline class="cls-1" points="225.9 220.1 235.3 218.6 235.3 232.6"/>
+      <polyline class="cls-1" points="235.3 218.6 235.3 195.3 260.3 195.3"/>
+      <polyline class="cls-1" points="238.7 121.7 238.7 179.5 235.3 195.3"/>
+      <line class="cls-1" x1="238.7" y1="145.6" x2="238.7" y2="179.5"/>
+      <polyline class="cls-1" points="264.1 145.6 284.7 145.6 284.1 121.7"/>
+      <polyline class="cls-1" points="307.5 121.5 307.5 145.6 284.7 145.6"/>
+      <polyline class="cls-1" points="307.5 234.8 325.5 234.6 325.5 145.6 307.5 145.6"/>
+      <polyline class="cls-1" points="314.7 303.5 325.5 303.5 325.5 234.6 345.5 234.8"/>
+      <polyline class="cls-1" points="284.7 360.3 284.6 344.4 263.5 344.4 235.3 344.4"/>
+      <polyline class="cls-1" points="308 360 308.8 344.4 284.6 344.4 325.5 344.4 325.5 303.5"/>
+      <polyline class="cls-1" points="352.3 360.3 351.4 344.4 325.5 344.4"/>
+      <polyline class="cls-1" points="377.5 360.3 376.9 344.4 351.4 344.4"/>
+      <polyline class="cls-1" points="403.7 360 403.7 344.4 376.9 344.4"/>
+      <polyline class="cls-1" points="325.5 145.6 351.4 145.6 351.7 121.7"/>
+      <polyline class="cls-1" points="376.9 121.7 376.9 145.6 351.4 145.6"/>
+      <polyline class="cls-1" points="415.1 121.5 415.1 146.3 376.9 145.6"/>
+      <polyline class="cls-1" points="392.8 195.3 415.1 195.3 415.1 146.3 439.5 145.6 439.5 165.7"/>
+      <polyline class="cls-1" points="428.6 220.1 415.1 221.1 415.1 195.3"/>
+      <polyline class="cls-1" points="429.5 231.6 415.1 233.4 415.1 221.1 415.1 258.6 430.4 258.6"/>
+      <polyline class="cls-1" points="394 294.7 415.1 294.7 415.1 258.6"/>
+      <polyline class="cls-1" points="403.7 344.4 415.1 344.4 415.1 294.7"/>
+      <polyline class="cls-1" points="415.1 344.4 441.3 344.4 441.3 322.7"/>
+      <polyline class="cls-1" points="468.2 326.3 468.2 344.4 441.3 344.4"/>
+      <polyline class="cls-1" points="468.2 344.4 499.9 344.4 499.9 360"/>
+      <polyline class="cls-1" points="499.9 344.4 499.9 312.6 510.3 312.6"/>
+      <polyline class="cls-1" points="464 168.2 464 145.6 439.5 145.6"/>
+      <polyline class="cls-1" points="498.4 121.5 498.4 145.6 464 145.6"/>
+      <polyline class="cls-1" points="145.6 344.4 175.2 344.4 175.7 321.5"/>
+      <line class="cls-1" x1="175.2" y1="344.4" x2="214.1" y2="344.4"/>
+      <path class="cls-1" d="M143.8,124"/>
+      <polyline class="cls-1" points="214.4 166.9 214.1 146.3 238.7 145.6 264.1 145.6 263.5 124"/>
+      <polyline class="cls-1" points="175.7 172.5 175.2 145.4 214.1 146.3"/>
+      <polyline class="cls-1" points="142.4 121.5 142.4 146.3 175.2 145.4"/>
+      <polyline class="cls-1" points="135.8 167.2 142.4 167.2 142.4 146.3"/>
       <line class="cls-1" x1="260.8" y1="293.8" x2="235.3" y2="294.7"/>
       <line class="cls-1" x1="263.3" y1="359.4" x2="263.5" y2="344.4"/>
     </g>
