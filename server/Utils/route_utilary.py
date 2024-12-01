@@ -139,6 +139,11 @@ if __name__ == "__main__":
         print(get_room_no_by_cabin("203", env_variables["db_path"]))
         print(format_cabin_no("B202"))
         print(format_cabin_no("c303"))
+        print(process_path_logic({
+        'start': '218',
+        'end': '204',
+        'preference': 'shortest'
+    }))
     except ValueError as e:
         print(f"Error in format_cabin_no: {e}")
 

@@ -9,13 +9,13 @@
             "name": "Python Debugger: Module",
             "type": "debugpy",
             "request": "launch",
-            "module": "server.run_test",
-            "args": [
-                "T004",
-                "507",
-                "Lift",
-                "--open"
-            ],                       
+            "module": "server.Utils.route_utilary",
+            // "args": [
+            //     "T004",
+            //     "507",
+            //     "Lift",
+            //     "--open"
+            // ],                       
         }
     ]
 }
