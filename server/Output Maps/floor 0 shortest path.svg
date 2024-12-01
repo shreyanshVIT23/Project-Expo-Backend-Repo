@@ -580,15 +580,15 @@
             <line x1="217.0" y1="316.4" x2="217.2" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
             <line x1="217.2" y1="337.4" x2="243.8" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
             <line x1="243.8" y1="337.4" x2="243.8" y2="293.0" stroke="black" stroke-width="1" visibility="hidden"/>
-            <line x1="177.5" y1="318.5" x2="177.5" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
+            <line x1="177.5" y1="318.5" x2="177.5" y2="337.4" stroke="red" stroke-width="1" visibility="visible"/>
             <line x1="177.5" y1="337.4" x2="217.2" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
             <line x1="217.2" y1="337.4" x2="237.7" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
             <line x1="237.7" y1="337.4" x2="238.0" y2="359.1" stroke="black" stroke-width="1" visibility="hidden"/>
             <line x1="193.0" y1="315.7" x2="193.0" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
             <line x1="193.0" y1="337.4" x2="217.2" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
-            <line x1="133.8" y1="312.1" x2="150.4" y2="312.1" stroke="red" stroke-width="1" visibility="visible"/>
-            <line x1="150.4" y1="312.1" x2="150.4" y2="337.4" stroke="red" stroke-width="1" visibility="visible"/>
-            <line x1="150.4" y1="337.4" x2="177.5" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
+            <line x1="133.8" y1="312.1" x2="150.4" y2="312.1" stroke="black" stroke-width="1" visibility="hidden"/>
+            <line x1="150.4" y1="312.1" x2="150.4" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
+            <line x1="150.4" y1="337.4" x2="177.5" y2="337.4" stroke="red" stroke-width="1" visibility="visible"/>
             <line x1="138.1" y1="356.6" x2="138.1" y2="337.4" stroke="red" stroke-width="1" visibility="visible"/>
             <line x1="138.1" y1="337.4" x2="150.4" y2="337.4" stroke="red" stroke-width="1" visibility="visible"/>
             <line x1="266.8" y1="359.1" x2="266.8" y2="337.4" stroke="black" stroke-width="1" visibility="hidden"/>
@@ -681,4 +681,4 @@
       <path class="cls-6" d="M470.9,272.6l.5-10.2"/>
     </g>
   </g>
-<line x1="150.4" y1="312.1" x2="133.8" y2="312.1" stroke="red" stroke-width="0.8" marker-end="url(#dynamic-arrow)"/></svg>
+<line x1="177.5" y1="337.4" x2="177.5" y2="318.5" stroke="red" stroke-width="0.8" marker-end="url(#dynamic-arrow)"/></svg>
