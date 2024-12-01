@@ -25,7 +25,7 @@ server/Personal Utils/
 how to run individual files in Utils.txt
 test_process_path.ps1
 
-
+test_api.py
 # Ignore Python cache files and directories
 server/__pycache__/
 server/Old Utils/__pycache__/
