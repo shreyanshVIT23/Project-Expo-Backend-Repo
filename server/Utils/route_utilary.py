@@ -31,7 +31,7 @@ def process_path_logic(data):
         if result["complexity"] == "simple":
             floor_no = result["path"][0]
             output_svg = output_svg_location(floor_no)
-            return send_file(output_svg, mimetype="image/svg+xml")
+            return send_file(output_svg, mimetype="image/svg+xml"), 200
 
         elif result["complexity"] == "complex":
             start_floor = result["path"][0][0]

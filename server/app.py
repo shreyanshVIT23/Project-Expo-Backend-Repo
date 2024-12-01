@@ -2,16 +2,16 @@ from flask import Flask, request, jsonify, send_file
 import os
 from flask_cors import CORS
 from werkzeug .security import check_password_hash, generate_password_hash
-from Utils .loader import env_variables
-from Utils .db_access import get_teacher_data, add_teacher_to_db, get_password_users as get_user_credentials
-from Utils .db_maker import (
+from .Utils .loader import env_variables
+from .Utils .db_access import get_teacher_data, add_teacher_to_db, get_password_users as get_user_credentials
+from .Utils .db_maker import (
     add_user,
     add_login_timestamp,
     get_all_users,
     get_login_timestamps,
     delete_user,
 )
-from Utils .route_utilary import (
+from .Utils .route_utilary import (
     process_path_logic,
     load_svg_logic,
     load_shortest_path_svg_logic,
