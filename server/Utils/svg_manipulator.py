@@ -238,4 +238,4 @@ if __name__ == "__main__":
     parser.add_argument('end', type=str, help="Ending point or value")
     parser.add_argument('--preference', type=str, default="default", help="User preference (optional)")
     args = parser.parse_args()
-    main(args.start, args.end, args.preference)
+    print(main(args.start, args.end, args.preference))
