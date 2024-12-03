@@ -12,7 +12,7 @@ def get_coordinates(db_path, description_condition, floor_condition):
                 SELECT apc.x_coordinate, apc.y_coordinate
                 FROM anchor_point_coordinates apc
                 JOIN anchor_point_description apd ON apc.id = apd.anchor_point_id
-                WHERE TRIM(apd.description) LIKE TRIM(?) AND apc.floor = ?
+                WHERE TRIM(apd.description) LIKE TRIM(?||'%') AND apc.floor = ?
             """
             cursor .execute(query, (description_condition, floor_condition))
             return cursor .fetchall()
