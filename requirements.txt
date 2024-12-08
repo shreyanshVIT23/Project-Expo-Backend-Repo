@@ -34,6 +34,7 @@ packaging==24.2
 pandas==2.2.3
 preshed==3.0.9
 psycopg2==2.9.10
+PyAudio==0.2.14
 pydantic==2.10.3
 pydantic_core==2.27.1
 Pygments==2.18.0
