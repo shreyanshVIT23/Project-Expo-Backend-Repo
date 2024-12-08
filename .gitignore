@@ -36,4 +36,4 @@ server/Old Utils/__pycache__/
 
 # Ignore output files or directories
 server/extracted_data.txt
-server/Output Maps
+server/Output Maps/
