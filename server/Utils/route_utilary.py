@@ -6,15 +6,15 @@ from .loader import env_variables
 import os
 
 
-class InvalidInputError (Exception):
+class InvalidInputError(Exception):
 
     pass
 
 
 def process_path_logic(data):
-    start = data .get("start")
-    end = data .get("end")
-    preference = data .get("preference")
+    start = data.get("start")
+    end = data.get("end")
+    preference = data.get("preference")
 
     if not start or not end:
         return {"error": "Start and end points are required"}, 400
@@ -36,12 +36,17 @@ def process_path_logic(data):
         elif result["complexity"] == "complex":
             start_floor = result["path"][0][0]
             end_floor = result["path"][1][0]
-            return jsonify({
-                "files": {
-                    "start_floor": f"/load_shortest_path_svg?floor={start_floor}",
-                    "end_floor": f"/load_shortest_path_svg?floor={end_floor}"
-                }
-            }), 200
+            return (
+                jsonify(
+                    {
+                        "files": {
+                            "start_floor": f"/load_shortest_path_svg?floor={start_floor}",
+                            "end_floor": f"/load_shortest_path_svg?floor={end_floor}",
+                        }
+                    }
+                ),
+                200,
+            )
         return {"error": "Unexpected path complexity"}, 500
 
     except Exception as e:
@@ -52,9 +57,8 @@ def load_svg_logic(floor):
     if not floor:
         return {"error": "Floor parameter is required"}, 400
 
-    svg_path = os .path .join(
-        env_variables["floor_map"], f"Floor {floor} copy path.svg")
-    if not os .path .exists(svg_path):
+    svg_path = os.path.join(env_variables["floor_map"], f"Floor {floor} copy path.svg")
+    if not os.path.exists(svg_path):
         return {"error": f"SVG file for floor {floor} not found"}, 404
 
     return send_file(svg_path, mimetype="image/svg+xml"), 200
@@ -65,7 +69,7 @@ def load_shortest_path_svg_logic(floor):
         return {"error": "Floor parameter is required"}, 400
 
     svg_path = output_svg_location(floor)
-    if not os .path .exists(svg_path):
+    if not os.path.exists(svg_path):
         return {"error": f"SVG file for floor {floor} not found"}, 404
 
     return send_file(svg_path, mimetype="image/svg+xml"), 200
@@ -104,7 +108,7 @@ def format_cabin_no(cabin_no):
         raise ValueError("Invalid cabin number format")
     building_side = cabin_no[0].upper()
     cabin_number = cabin_no[1:]
-    if not cabin_number .isdigit():
+    if not cabin_number.isdigit():
         raise ValueError("Invalid cabin number format")
     return f"{building_side}-{cabin_number}"
 
@@ -115,19 +119,19 @@ def get_room_no_by_cabin(cabin_no, db_path):
 
     try:
 
-        with sqlite3 .connect(db_path)as conn:
-            cursor = conn .cursor()
+        with sqlite3.connect(db_path) as conn:
+            cursor = conn.cursor()
 
             query = """
             SELECT room_no
             FROM teachers
             WHERE TRIM(cabin_no) = ?;
             """
-            cursor .execute(query, (formatted_cabin_no,))
-            result = cursor .fetchone()
+            cursor.execute(query, (formatted_cabin_no,))
+            result = cursor.fetchone()
 
-            return result[0]if result else None
-    except sqlite3 .Error as e:
+            return result[0] if result else None
+    except sqlite3.Error as e:
         print(f"An error occurred while accessing the database: {e}")
         return None
 
@@ -139,11 +143,9 @@ if __name__ == "__main__":
         print(get_room_no_by_cabin("203", env_variables["db_path"]))
         print(format_cabin_no("B202"))
         print(format_cabin_no("c303"))
-        print(process_path_logic({
-        'start': '218',
-        'end': '204',
-        'preference': 'shortest'
-    }))
+        print(
+            process_path_logic({"start": "218", "end": "204", "preference": "shortest"})
+        )
     except ValueError as e:
         print(f"Error in format_cabin_no: {e}")
 
