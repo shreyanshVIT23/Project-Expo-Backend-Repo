@@ -27,7 +27,10 @@ from .Utils.route_utilary import (
     InvalidInputError,
     DatabaseError,
 )
-from .Chatbot.audio_to_text import get_teacher_details_with_preprocessing, main as process_audio
+from .Chatbot.audio_to_text import (
+    get_teacher_details_with_preprocessing,
+    main as process_audio,
+)
 
 
 app = Flask(__name__)
@@ -211,6 +214,7 @@ def upload_audio():
         200,
     )
 
+
 @app.route("/search_teacher", methods=["GET"])
 def get_teacher_details_route():
     try:
@@ -221,6 +225,7 @@ def get_teacher_details_route():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
