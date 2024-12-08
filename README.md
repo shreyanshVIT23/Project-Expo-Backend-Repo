@@ -92,7 +92,11 @@ Follow these steps to set up and run the backend locally.
 
 ### **Testing the Chatbot Audio Feature**
 1. **After Setup first run the application**
+<<<<<<< HEAD
    - ```bash
+=======
+   ```bash
+>>>>>>> a25fc1e31c32ccad3137f2699f031883fede5ea0
    cd .\server
    flask run
    ```
