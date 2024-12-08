@@ -77,17 +77,33 @@ Follow these steps to set up and run the backend locally.
 ---
 ## **Testing the Code**
 
+### **Testing the shortest path algorithm**
 1. **After Setup go to server and test the code (example)**:
     ```bash
     cd server
-    python .\run_test.py T004 507 Lift
+    python .\Test\run_test.py 230 Stairs Stairs --open
     ```
 2. **Now change accordingly**:
    - 'T004' with the start point you want
    - '507' as the endpoint
    - 'Lift' or 'Stairs' as preference.
    - Also you can add ```
-     --open   ``` as suffix to open the the output file in your default browser
+     --open``` as suffix to open the the output file in your default browser
+
+### **Testing the Chatbot Audio Feature**
+1. **After Setup first run the application**
+   ```bash
+   cd .\server
+   flask run
+   ```
+   
+2. **Now run imitation frontend normally**
+   - Now open a new terminal tab and run the code below
+   - ```bash
+      cd .\server\Test\
+      python .\imitation_frontend_test.py
+      ```
+   - *Note: That the code will record your microphone for 9 seconds and will give output in result. To check if the name of teacher was matched go to flask terminal*
 ---
 ## **🤝 Contributing**
 Contributions are welcome! Here's how you can contribute:
