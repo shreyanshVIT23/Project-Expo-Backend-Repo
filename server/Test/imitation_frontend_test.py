@@ -40,12 +40,6 @@ def record_audio(
 
 
 def upload_file_to_api(api_url, file_path):
-    """
-    Upload a file to the specified API URL.
-
-    :param api_url: The API endpoint to which the file will be uploaded.
-    :param file_path: The local path to the file to be uploaded.
-    """
 
     with open(file_path, "rb") as file:
 
