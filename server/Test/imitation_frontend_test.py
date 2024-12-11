@@ -1,6 +1,8 @@
 import requests
 import pyaudio
 import wave
+import webbrowser
+from test_api import BASE_URL
 
 
 def record_audio(
@@ -52,12 +54,27 @@ def upload_file_to_api(api_url, file_path):
             if response.status_code == 200:
                 print("File uploaded successfully!")
                 print("Server Response:", response.json())
+                open_in_browser(response.json())
             else:
                 print(f"Failed to upload file. Status Code: {response.status_code}")
                 print("Server Response:", response.text)
 
         except requests.exceptions.RequestException as e:
             print(f"An error occurred: {e}")
+
+
+def open_in_browser(response):
+    svg_content = response["files"]
+
+    print(f"Opening start in the default web browser...")
+    webbrowser.open(
+        f"{BASE_URL}/{svg_content["start_floor"]}",
+    )
+
+    print(f"Opening end in the default web browser...")
+    webbrowser.open(
+        f"{BASE_URL}/{svg_content["end_floor"]}",
+    )
 
 
 if __name__ == "__main__":
