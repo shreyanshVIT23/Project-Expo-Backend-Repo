@@ -5,8 +5,6 @@ from flask_cors import CORS
 from werkzeug.security import check_password_hash, generate_password_hash
 from .Utils.loader import env_variables
 from .Utils.db_access import (
-    get_teacher_data,
-    add_teacher_to_db,
     get_password_users as get_user_credentials,
 )
 from .Utils.db_maker import (
@@ -22,7 +20,6 @@ from .Utils.route_utilary import (
     load_shortest_path_svg_logic,
     add_teacher,
     retrieve_teachers,
-    format_cabin_no,
     get_room_no_by_cabin as get_room_by_cabin_no,
     InvalidInputError,
     DatabaseError,
@@ -208,11 +205,9 @@ def upload_audio():
 
     audio_file = request.files["audio_file"]
 
-    result = process_audio(audio_file=audio_file)
-    return (
-        jsonify({"message": "Audio file uploaded successfully", "result": result}),
-        200,
-    )
+    result, status_code = process_audio(audio_file=audio_file)
+    result.headers["message"] = "Audio file uploaded successfully"
+    return result, status_code
 
 
 @app.route("/search_teacher", methods=["GET"])
