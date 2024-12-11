@@ -98,9 +98,19 @@ def main(
     else:
         start, end = map(str, room_numbers[:2])
 
-    result, status = process_data({"start": start, "end": end})
-    result.headers["status"] = "SVG created successfully."
-    return result, status
+    try:
+        result, status = process_data({"start": start, "end": end})
+
+        if status != 200:
+            return result, status
+
+        if isinstance(result, dict) and "headers" in result:
+            result.headers["status"] = "SVG created successfully."
+        return result, status
+
+    except Exception as e:
+        error_message = f"An unexpected error occurred: {e}"
+        return {"error": error_message}, 500
 
 
 def preprocess_query(query):
