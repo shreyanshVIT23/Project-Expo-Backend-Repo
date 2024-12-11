@@ -78,7 +78,7 @@ def open_in_browser(response):
 
 
 if __name__ == "__main__":
-    # record_audio("example_audio.wav", 10)
+    record_audio("example_audio.wav", 10)
     api_endpoint = "http://127.0.0.1:5000/upload"
     file_to_upload = "example_audio.wav"
     upload_file_to_api(api_endpoint, file_to_upload)
