@@ -204,9 +204,13 @@ def upload_audio():
 
     audio_file = request.files["audio_file"]
 
-    result, status_code = process_audio(audio_file=audio_file)
-    result.headers["message"] = "Audio file uploaded successfully"
-    return result, status_code
+    response = process_audio(audio_file=audio_file)
+    if len(response) == 2:
+        result , status_code = response
+        result.headers["message"] = "Audio file uploaded successfully"
+        return result, status_code
+    else:
+        return jsonify(response), 400
 
 
 @app.route("/search_teacher", methods=["GET"])
