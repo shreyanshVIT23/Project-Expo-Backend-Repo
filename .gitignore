@@ -25,7 +25,6 @@ server/Personal Utils/
 how to run individual files in Utils.txt
 test_process_path.ps1
 
-test_api.py
 # Ignore Python cache files and directories
 server/__pycache__/
 server/Old Utils/__pycache__/
@@ -38,3 +37,4 @@ server/Old Utils/__pycache__/
 server/extracted_data.txt
 server/Output Maps/
 server/Chatbot/temp_audio
+example_audio.wav
