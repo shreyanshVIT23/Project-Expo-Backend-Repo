@@ -1,5 +1,5 @@
 from pathlib import Path
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_from_directory
 import os
 from flask_cors import CORS
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -221,6 +221,9 @@ def get_teacher_details_route():
     except Exception as e:
         return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
+@app.route('/Assets/<path:filename>')
+def serve_assets(filename):
+    return send_from_directory('Assets', filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
