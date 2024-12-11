@@ -9,7 +9,7 @@ from nltk.tokenize import word_tokenize
 import nltk
 import os
 from pathlib import Path
-from ..Utils.svg_manipulator import main as make_svg
+from ..Utils.route_utilary import process_path_logic as process_data
 from ..Utils.loader import env_variables
 from werkzeug.datastructures import FileStorage
 
@@ -98,9 +98,9 @@ def main(
     else:
         start, end = map(str, room_numbers[:2])
 
-    result = make_svg(start=start, end=end)
-
-    return {"status": "SVG created successfully.", "result": result}
+    result, status = process_data({"start": start, "end": end})
+    result.headers["status"] = "SVG created successfully."
+    return result, status
 
 
 def preprocess_query(query):
