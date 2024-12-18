@@ -134,7 +134,9 @@ def extract_names(text):
     return "".join(names)
 
 
-def get_teacher_details_with_preprocessing(teacher_name, db_path):
+def get_teacher_details_with_preprocessing(
+    teacher_name, db_path=env_variables["db_path"]
+):
 
     try:
 
