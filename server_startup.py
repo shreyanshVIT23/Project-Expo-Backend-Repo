@@ -27,7 +27,7 @@ def setup_env_file():
         f"FLOOR_MAPS_DIR=Floor Maps\n"
         f"OUTPUT_MAPS_DIR=Output Maps\n"
         f"ASSETS_DIR=..\\Assets\\location_symbol-removebg.png\n"
-        f"AUDIO_DIR=Chatbot\temp_audio\n"
+        f"AUDIO_DIR=Chatbot\\temp_audio\n"
         f"PYTHONPATH={pythonpath}\n"
     )
     try:
