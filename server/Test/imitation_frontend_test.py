@@ -68,12 +68,12 @@ def open_in_browser(response):
 
     print(f"Opening start in the default web browser...")
     webbrowser.open(
-        f"{BASE_URL}/{svg_content["start_floor"]}",
+        f"{BASE_URL}/{svg_content['start_floor']}",
     )
 
     print(f"Opening end in the default web browser...")
     webbrowser.open(
-        f"{BASE_URL}/{svg_content["end_floor"]}",
+        f"{BASE_URL}/{svg_content['end_floor']}",
     )
 
 
