@@ -39,3 +39,4 @@ server/Output Maps/
 server/Chatbot/temp_audio
 example_audio.wav
 api_test_log.txt
+user_auth.db
