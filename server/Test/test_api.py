@@ -1,7 +1,5 @@
 import requests
 import json
-from werkzeug.security import check_password_hash
-
 
 BASE_URL = "http://127.0.0.1:5000"
 
@@ -94,6 +92,14 @@ def test_manage_teachers_get(name=None, cabin_no=None, room_no=None):
     print_response(response)
 
 
+def test_search_teacher(teacher_name):
+    print(f"\nTesting /search_teacher for teacher name {teacher_name}")
+    response = requests.get(
+        f"{BASE_URL}/search_teacher", params={"teacher_name": teacher_name}
+    )
+    print_response(response)
+
+
 def print_response(response):
 
     print(f"Status Code: {response.status_code}")
@@ -105,6 +111,20 @@ def print_response(response):
 
 if __name__ == "__main__":
 
+    test_process_path(start="322", end="504", preference="Lift")
+    test_load_svg(floor=1)
+    test_load_shortest_path_svg(floor=2)
+    test_process_path(start="A", end="B", preference="shortest")
     test_process_path_custom(
         type="teacher cabin", start="G-02", end="T004", preference="Lift"
     )
+    test_register_user(username="test_user", password="test_password")
+    test_login_user(username="test_user", password="test_password")
+    test_get_users()
+    test_get_user_timestamps(username="test_user")
+    test_delete_user(username="test_user")
+    # test_manage_teachers_post(
+    #     data={"name": "John Doe", "cabin_no": "101", "room_no": "202"}
+    # )
+    test_manage_teachers_get(cabin_no="101")
+    test_search_teacher(teacher_name="Dr. Vishal Singh")
