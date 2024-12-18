@@ -109,7 +109,8 @@ if __name__ == "__main__":
     try:
         os.remove("api_test_log.txt")
     except FileNotFoundError:
-        print("File api_test_log.txt doesn't exist.")
+        print("File api_test_log.txt doesn't exist yet.")
+
     test_process_path(start="322", end="504", preference="Lift")
     test_load_svg(floor=1)
     test_load_shortest_path_svg(floor=2)
