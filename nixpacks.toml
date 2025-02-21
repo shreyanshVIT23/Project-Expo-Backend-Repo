@@ -1,3 +1,9 @@
 [phases.setup]
 nixPkgs = ["portaudio", "alsa-lib", "pulseaudio"]
 aptPkgs = ["portaudio19-dev", "libasound2-dev", "libpulse-dev"]
+
+[build]
+command = "python3 server_startup.py"
+
+[run]
+command = "gunicorn -w 1 -b 0.0.0.0:5000 server.app:app"
