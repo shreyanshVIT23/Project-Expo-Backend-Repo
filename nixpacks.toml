@@ -1,6 +1,6 @@
 [phases.setup]
-nixPkgs = ["portaudio", "alsa-lib", "pulseaudio"]
-aptPkgs = ["portaudio19-dev", "libasound2-dev", "libpulse-dev"]
+nixPkgs = ["python311", "portaudio", "alsa-lib", "pulseaudio"]
+aptPkgs = ["portaudio19-dev", "libasound2-dev", "libpulse-dev", "ffmpeg"]
 
 [build]
 command = "python3 server_startup.py"
