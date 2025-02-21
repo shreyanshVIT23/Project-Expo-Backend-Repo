@@ -2,8 +2,8 @@ import requests
 import json
 import os
 
-# BASE_URL = "http://127.0.0.1:5000"
-BASE_URL = "https://project-expo-backend-server-production.up.railway.app/"
+BASE_URL = "http://127.0.0.1:5000"
+# BASE_URL = "https://project-expo-backend-server-production.up.railway.app/"
 
 
 def log_response(method, endpoint, params=None, json_data=None, output=""):
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         print("File api_test_log.txt doesn't exist yet.")
         os.open("api_test_log.txt", os.O_CREAT)
 
-    test_process_path(start="322", end="504", preference="Lift")
+    test_process_path(start="402", end="504", preference="Lift")
     test_load_svg(floor=1)
     test_load_shortest_path_svg(floor=2)
     test_process_path_custom(
