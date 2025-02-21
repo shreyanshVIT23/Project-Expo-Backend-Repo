@@ -206,7 +206,7 @@ def upload_audio():
 
     response = process_audio(audio_file=audio_file)
     if len(response) == 2:
-        result , status_code = response
+        result, status_code = response
         result.headers["message"] = "Audio file uploaded successfully"
         return result, status_code
     else:
@@ -231,5 +231,4 @@ def serve_assets(filename):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-    # app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
