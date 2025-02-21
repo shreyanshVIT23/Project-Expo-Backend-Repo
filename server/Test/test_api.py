@@ -2,7 +2,8 @@ import requests
 import json
 import os
 
-BASE_URL = "http://127.0.0.1:5000"
+# BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://project-expo-backend-server-production.up.railway.app/"
 
 
 def log_response(method, endpoint, params=None, json_data=None, output=""):
