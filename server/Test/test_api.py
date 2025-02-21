@@ -5,14 +5,21 @@ import os
 BASE_URL = "http://127.0.0.1:5000"
 
 
-def log_response(output):
+def log_response(method, endpoint, params=None, json_data=None, output=""):
     with open("api_test_log.txt", "a") as log_file:
-        log_file.write(output + "\n")
+        log_file.write(f"\nTesting {method} {endpoint}")
+        if params:
+            log_file.write(f"\nParameters: {json.dumps(params, indent=4)}")
+        if json_data:
+            log_file.write(f"\nRequest Body: {json.dumps(json_data, indent=4)}")
+        log_file.write(f"\n{output}\n")
 
 
 def test_load_svg(floor):
     response = requests.get(f"{BASE_URL}/load_svg", params={"floor": floor})
-    log_response(f"\nTesting /load_svg for floor {floor}\n{format_response(response)}")
+    log_response(
+        "GET", "/load_svg", params={"floor": floor}, output=format_response(response)
+    )
 
 
 def test_load_shortest_path_svg(floor):
@@ -20,7 +27,10 @@ def test_load_shortest_path_svg(floor):
         f"{BASE_URL}/load_shortest_path_svg", params={"floor": floor}
     )
     log_response(
-        f"\nTesting /load_shortest_path_svg for floor {floor}\n{format_response(response)}"
+        "GET",
+        "/load_shortest_path_svg",
+        params={"floor": floor},
+        output=format_response(response),
     )
 
 
@@ -28,53 +38,50 @@ def test_process_path(start, end, preference):
     data = {"start": start, "end": end, "preference": preference}
     response = requests.post(f"{BASE_URL}/process_path", json=data)
     log_response(
-        f"\nTesting /process_path from {start} to {end}\n{format_response(response)}"
+        "POST", "/process_path", json_data=data, output=format_response(response)
     )
 
 
 def test_process_path_custom(type, start, end, preference):
-
     data = {"type": type, "start": start, "end": end, "preference": preference}
     response = requests.post(f"{BASE_URL}/custom_process", json=data)
     log_response(
-        f"\nTesting /custom_process from {start} to {end}\n{format_response(response)}"
+        "POST", "/custom_process", json_data=data, output=format_response(response)
     )
 
 
 def test_register_user(username, password):
     data = {"username": username, "password": password}
     response = requests.post(f"{BASE_URL}/register", json=data)
-    log_response(
-        f"\nTesting /register for user {username}\n{format_response(response)}"
-    )
+    log_response("POST", "/register", json_data=data, output=format_response(response))
 
 
 def test_login_user(username, password):
     data = {"username": username, "password": password}
     response = requests.post(f"{BASE_URL}/login", json=data)
-    log_response(f"\nTesting /login for user {username}\n{format_response(response)}")
+    log_response("POST", "/login", json_data=data, output=format_response(response))
 
 
 def test_get_users():
     response = requests.get(f"{BASE_URL}/users")
-    log_response(f"\nTesting /users to fetch all users\n{format_response(response)}")
+    log_response("GET", "/users", output=format_response(response))
 
 
 def test_get_user_timestamps(username):
     response = requests.get(f"{BASE_URL}/users/{username}/timestamps")
-    log_response(f"\nTesting /users/{username}/timestamps\n{format_response(response)}")
+    log_response(
+        "GET", f"/users/{username}/timestamps", output=format_response(response)
+    )
 
 
 def test_delete_user(username):
     response = requests.delete(f"{BASE_URL}/users/{username}")
-    log_response(f"\nTesting DELETE /users/{username}\n{format_response(response)}")
+    log_response("DELETE", f"/users/{username}", output=format_response(response))
 
 
 def test_manage_teachers_post(data):
     response = requests.post(f"{BASE_URL}/teachers", json=data)
-    log_response(
-        f"\nTesting POST /teachers to add a teacher\n{format_response(response)}"
-    )
+    log_response("POST", "/teachers", json_data=data, output=format_response(response))
 
 
 def test_manage_teachers_get(name=None, cabin_no=None, room_no=None):
@@ -84,7 +91,7 @@ def test_manage_teachers_get(name=None, cabin_no=None, room_no=None):
         if value
     }
     response = requests.get(f"{BASE_URL}/teachers", params=params)
-    log_response(f"\nTesting GET /teachers with filters\n{format_response(response)}")
+    log_response("GET", "/teachers", params=params, output=format_response(response))
 
 
 def test_search_teacher(teacher_name):
@@ -92,7 +99,10 @@ def test_search_teacher(teacher_name):
         f"{BASE_URL}/search_teacher", params={"teacher_name": teacher_name}
     )
     log_response(
-        f"\nTesting /search_teacher for teacher name {teacher_name}\n{format_response(response)}"
+        "GET",
+        "/search_teacher",
+        params={"teacher_name": teacher_name},
+        output=format_response(response),
     )
 
 
@@ -110,6 +120,7 @@ if __name__ == "__main__":
         os.remove("api_test_log.txt")
     except FileNotFoundError:
         print("File api_test_log.txt doesn't exist yet.")
+        os.open("api_test_log.txt", os.O_CREAT)
 
     test_process_path(start="322", end="504", preference="Lift")
     test_load_svg(floor=1)
