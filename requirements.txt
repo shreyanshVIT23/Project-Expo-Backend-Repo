@@ -3,6 +3,7 @@ blinker==1.9.0
 blis==1.2.0
 catalogue==2.0.10
 certifi==2025.1.31
+cffi==1.17.1
 charset-normalizer==3.4.1
 click==8.1.8
 cloudpathlib==0.20.0
@@ -31,7 +32,7 @@ numpy==2.2.3
 packaging==24.2
 pandas==2.2.3
 preshed==3.0.9
-PyAudio==0.2.14
+pycparser==2.22
 pydantic==2.10.6
 pydantic_core==2.27.2
 Pygments==2.19.1
@@ -46,6 +47,7 @@ setuptools==75.8.0
 shellingham==1.5.4
 six==1.17.0
 smart-open==7.1.0
+sounddevice==0.5.1
 spacy==3.8.4
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5

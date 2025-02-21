@@ -1,42 +1,28 @@
 import requests
-import pyaudio
+import sounddevice as sd
+import numpy as np
 import wave
 import webbrowser
 from test_api import BASE_URL
 
 
-def record_audio(
-    file_name, record_seconds, sample_rate=44100, chunk_size=1024, channels=1
-):
-
-    audio = pyaudio.PyAudio()
-
-    stream = audio.open(
-        format=pyaudio.paInt16,
-        channels=channels,
-        rate=sample_rate,
-        input=True,
-        frames_per_buffer=chunk_size,
-    )
-
+def record_audio(file_name, record_seconds, sample_rate=44100, channels=1):
     print("Recording...")
-    frames = []
 
-    for _ in range(int(sample_rate / chunk_size * record_seconds)):
-        data = stream.read(chunk_size)
-        frames.append(data)
-
+    audio_data = sd.rec(
+        int(record_seconds * sample_rate),
+        samplerate=sample_rate,
+        channels=channels,
+        dtype=np.int16,
+    )
+    sd.wait()
     print("Recording complete.")
-
-    stream.stop_stream()
-    stream.close()
-    audio.terminate()
 
     with wave.open(file_name, "wb") as wf:
         wf.setnchannels(channels)
-        wf.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
+        wf.setsampwidth(2)
         wf.setframerate(sample_rate)
-        wf.writeframes(b"".join(frames))
+        wf.writeframes(audio_data.tobytes())
 
     print(f"Audio saved as {file_name}")
 
