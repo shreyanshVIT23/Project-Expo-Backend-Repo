@@ -32,8 +32,8 @@ def setup_env_file():
     excel_teacher_path = os.path.join("Teacher_Data", "faculty.xlsx")
     assets_dir = os.path.join("..", "Assets", "location_symbol-removebg.png")
     audio_dir = os.path.join("Chatbot", "temp_audio")
-    floor_maps_dir = "Floor Maps"
-    output_maps_dir = "Output Maps"
+    floor_maps_dir = "Floor_Maps"
+    output_maps_dir = "Output_Maps"
 
     env_content = f"""DB_MAP_PATH={db_map_path}
 DB_AUTH_PATH={db_auth_path}
