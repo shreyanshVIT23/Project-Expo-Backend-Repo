@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import os
+import platform
 
 
 def setup_project():
@@ -17,19 +18,23 @@ def setup_env_file():
     server_dir = os.path.join(os.getcwd(), "server")
     if not os.path.exists(server_dir):
         os.makedirs(server_dir)
+
     env_file_path = os.path.join(server_dir, ".env")
     pythonpath = os.path.join(os.getcwd(), "server")
+    sep = "\\" if platform.system() == "Windows" else "/"
+
     env_content = (
-        f"DB_MAP_PATH=DB\\Test_Use_3.db\n"
-        f"DB_AUTH_PATH=DB\\user_auth.db\n"
-        f"EXCEL_TEACHER_PATH=Teacher_Data\\faculty.xlsx\n"
+        f"DB_MAP_PATH=DB{sep}Test_Use_3.db\n"
+        f"DB_AUTH_PATH=DB{sep}user_auth.db\n"
+        f"EXCEL_TEACHER_PATH=Teacher_Data{sep}faculty.xlsx\n"
         f"FLASK_APP=app.py\n"
         f"FLOOR_MAPS_DIR=Floor Maps\n"
         f"OUTPUT_MAPS_DIR=Output Maps\n"
-        f"ASSETS_DIR=..\\Assets\\location_symbol-removebg.png\n"
-        f"AUDIO_DIR=Chatbot\\temp_audio\n"
+        f"ASSETS_DIR=..{sep}Assets{sep}location_symbol-removebg.png\n"
+        f"AUDIO_DIR=Chatbot{sep}temp_audio\n"
         f"PYTHONPATH={pythonpath}\n"
     )
+
     try:
         if not os.path.exists(env_file_path):
             print("Creating .env file in the 'server' directory...")
